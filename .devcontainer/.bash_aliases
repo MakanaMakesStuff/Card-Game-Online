@@ -6,6 +6,7 @@ dj() {
         mig) shift; poetry run python manage.py migrate "$@" ;;
         run) shift; poetry run python manage.py runserver "$@" ;;
         super) shift; poetry run python manage.py createsuperuser "$@" ;;
+        app) shift; poetry run python manage.py startapp "$@" ;;
         *) poetry run python manage.py "$@" ;;
     esac
 }

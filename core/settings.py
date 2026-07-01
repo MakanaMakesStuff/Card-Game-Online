@@ -61,7 +61,7 @@ INSTALLED_APPS = [
 
 # wagtail envs
 WAGTAIL_SITE_NAME = "Chat App"
-WAGATAILADMIN_BASE_URL = env.str(
+WAGTAILADMIN_BASE_URL = env.str(
     "DJANGO_WAGTAILADMIN_BASE_URL", default="http://localhost:8000"
 )
 WAGTAILADMIN_LOGIN_URL = "/accounts/login"
