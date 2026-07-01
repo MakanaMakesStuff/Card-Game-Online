@@ -1,0 +1,20 @@
+[project]
+name = "chat-system"
+version = "0.0.1"
+description = "Chat application"
+authors = [
+    {name = "Makanaokeakua Edwards"}
+]
+license = "Proprietary"
+requires-python = ">=3.12,<4"
+dependencies = [
+    "django (>=6.0.6,<7.0.0)",
+    "wagtail (>=7.4.2,<8.0.0)",
+    "django-allauth[mfa] (>=65.18.0,<66.0.0)",
+    "django-environ (>=0.14.0,<0.15.0)"
+]
+
+
+[build-system]
+requires = ["poetry-core>=2.0.0,<3.0.0"]
+build-backend = "poetry.core.masonry.api"
