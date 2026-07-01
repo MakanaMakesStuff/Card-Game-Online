@@ -55,3 +55,9 @@ WORKDIR /workspace
 
 # ---- Default shell ----
 CMD ["bash"]
+
+# Copy custom aliases into the container
+COPY .bash_aliases /home/vscode/.bash_aliases
+
+# Tell .bashrc to load the aliases
+RUN echo "source /home/vscode/.bash_aliases" >> /home/vscode/.bashrc
