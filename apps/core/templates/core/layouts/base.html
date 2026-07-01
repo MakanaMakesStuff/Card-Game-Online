@@ -1,69 +1,42 @@
-{% load static %}
+{% load tailwind_tags wagtailcore_tags %}
+{% wagtail_site as site %}
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Django Arcade</title>
     
-    <link rel="stylesheet" href="{% static 'css/styles.css' %}">
-    
-    <style>
-        /* Basic reset and nav styling just for the base layout */
-        body {
-            margin: 0;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background-color: #edf2f7;
-            color: #2d3748;
-        }
-        .navbar {
-            background-color: #1a202c;
-            color: white;
-            padding: 1rem 2rem;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-        .navbar-brand {
-            font-size: 1.5rem;
-            font-weight: bold;
-            text-decoration: none;
-            color: white;
-        }
-        .navbar-links a {
-            color: #e2e8f0;
-            text-decoration: none;
-            margin-left: 1.5rem;
-            font-weight: 500;
-        }
-        .navbar-links a:hover {
-            color: white;
-        }
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 2rem;
-        }
-    </style>
-</head>
-<body>
+    <title>{% block title %}{{ site.site_name }}{% endblock %}</title>
 
-    <nav class="navbar">
-        <a href="/" class="navbar-brand">🎲 Django Arcade</a>
-        <div class="navbar-links">
-            <a href="#">Games</a> 
+    <script src="https://unpkg.com/htmx.org@1.9.10"></script>
+    
+    {% tailwind_css %}
+</head>
+<body class="bg-slate-100 text-slate-800 font-sans min-h-screen flex flex-col">
+
+    <nav class="bg-slate-900 text-white shadow-md">
+        <div class="max-w-6xl mx-auto px-6 py-4 flex justify-between items-center">
             
-            {% if request.user.is_authenticated %}
-                <span>Welcome, {{ request.user.username }}!</span>
-                <a href="#">Logout</a>
-            {% else %}
-                <a href="#">Login</a>
-                <a href="#">Register</a>
-            {% endif %}
+            <a href="/" class="text-xl font-bold tracking-wider hover:text-slate-300 transition">🎲 {{ site.site_name }}</a>
+            
+            <div class="space-x-4 font-medium text-sm flex items-center">
+                <a href="#" class="text-slate-300 hover:text-white transition">Games</a> 
+                
+                {% if request.user.is_authenticated %}
+                    <span class="text-slate-400 border-l border-slate-600 pl-4 ml-2">
+                        Welcome, {{ request.user.first_name|default:request.user.username }}!
+                    </span>
+                    <a href="#" class="text-slate-300 hover:text-white transition ml-4">Logout</a>
+                {% else %}
+                    <a href="#" class="text-slate-300 hover:text-white transition">Login</a>
+                    <a href="#" class="text-slate-300 hover:text-white transition bg-slate-800 px-4 py-2 rounded-md hover:bg-slate-700">Register</a>
+                {% endif %}
+            </div>
         </div>
     </nav>
 
-    <main class="container">
+    <main class="flex-grow max-w-6xl w-full mx-auto px-6 py-10">
         {% block content %}
         {% endblock %}
     </main>

@@ -1,0 +1,92 @@
+<div class="flex flex-col items-center gap-3 w-full">
+  <h2
+    class="text-xl font-bold text-emerald-200 tracking-wider uppercase drop-shadow-md"
+  >
+    Computer
+  </h2>
+  <div
+    class="text-sm bg-emerald-900/60 px-4 py-1.5 rounded-full border border-emerald-700/50 shadow-inner"
+  >
+    Cards remaining:
+    <strong class="text-white text-base ml-1"
+      >{{ results.p2_card_count }}</strong
+    >
+  </div>
+
+  <div class="mt-4">
+    {% include 'core/components/card.html' with is_face_down=results.winner card_display=results.p2_card.display card_id="p2-card" %}
+  </div>
+</div>
+
+<div
+  class="text-center bg-black/25 px-10 py-8 rounded-2xl my-8 min-w-[350px] backdrop-blur-sm border border-emerald-700/30 shadow-lg w-full max-w-lg"
+>
+  {% if results.winner %}
+  <h2
+    class="text-4xl font-black text-amber-400 mb-8 drop-shadow-lg uppercase tracking-wide"
+  >
+    Game Over!<br /><span class="text-3xl text-white mt-2 block"
+      >{{ results.winner }} wins!</span
+    >
+  </h2>
+  <a
+    href="{% url 'war:start_war_game' %}"
+    class="inline-block bg-amber-500 hover:bg-amber-400 text-amber-950 font-bold text-lg py-3 px-10 rounded-xl shadow-lg transition"
+  >
+    Play Again 🔄
+  </a>
+  {% else %}
+  <div
+    class="text-xl italic text-emerald-50 mb-8 font-medium leading-relaxed drop-shadow h-14"
+  >
+    {{ results.log }}
+  </div>
+
+  <form
+    hx-post="{% url 'war:play_war_game' game_id=game_id %}"
+    hx-target="#game-board"
+  >
+    {% csrf_token %}
+    <button
+      onclick="
+        document
+          .querySelectorAll('.card-inner')
+          .forEach((c) => c.classList.remove('flipped'))
+      "
+      class="bg-red-600 hover:bg-red-500 active:bg-red-700 text-white font-bold text-lg py-3 px-10 rounded-xl shadow-[0_4px_0_rgb(153,27,27)] transition-all"
+    >
+      Draw Cards ⚔️
+    </button>
+  </form>
+  {% endif %}
+</div>
+
+<div class="flex flex-col items-center gap-3 w-full">
+  <div class="mb-4">
+    {% include 'core/components/card.html' with is_face_down=results.winner card_display=results.p1_card.display card_id="p1-card" %}
+  </div>
+
+  <div
+    class="text-sm bg-emerald-900/60 px-4 py-1.5 rounded-full border border-emerald-700/50 shadow-inner"
+  >
+    Cards remaining:
+    <strong class="text-white text-base ml-1"
+      >{{ results.p1_card_count }}</strong
+    >
+  </div>
+  <h2
+    class="text-xl font-bold text-emerald-200 tracking-wider uppercase drop-shadow-md"
+  >
+    {{ request.user.username }}
+  </h2>
+</div>
+
+{% if not results.winner %}
+<script>
+  setTimeout(() => {
+    document
+      .querySelectorAll(".card-inner")
+      .forEach((card) => card.classList.add("flipped"));
+  }, 100); // 100ms delay ensures the CSS transition catches the change
+</script>
+{% endif %}

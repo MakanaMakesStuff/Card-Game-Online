@@ -13,12 +13,39 @@
     "vscode": {
       "settings": {
         "python.defaultInterpreterPath": "/home/vscode/.local/bin/python",
-        "editor.formatOnSave": true
+        "editor.formatOnSave": true,
+        "[python]": {
+          "editor.defaultFormatter": "charliermarsh.ruff",
+          "editor.formatOnSave": true,
+          "editor.codeActionsOnSave": {
+            "source.organizeImports": "explicit",
+            "source.fixAll": "explicit"
+          }
+        },
+        "files.exclude": {
+          "**/__pycache__": true,
+          "**/*.pyc": true
+        },
+        "tailwindCSS.includeLanguages": {
+          "django-html": "html",
+          "django-txt": "html"
+        },
+        "files.associations": {
+          "**/*.html": "django-html"
+        },
+        "[django-html]": {
+          "editor.defaultFormatter": "monosans.djlint",
+          "editor.formatOnSave": true
+        },
+        "djlint.ignore": ["H021"]
       },
       "extensions": [
         "ms-python.python",
         "ms-python.vscode-pylance",
+        "charliermarsh.ruff",
+        "bradlc.vscode-tailwindcss",
         "batisteo.vscode-django",
+        "monosans.djlint",
         "tamasfe.even-better-toml"
       ]
     }
