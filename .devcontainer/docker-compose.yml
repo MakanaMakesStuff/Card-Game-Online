@@ -5,4 +5,5 @@ services:
       dockerfile: Dockerfile
     volumes:
       - ..:/workspace:cached
+      - ~/.ssh:/home/vscode/.ssh
     command: sleep infinity
