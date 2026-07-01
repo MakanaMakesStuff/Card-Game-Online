@@ -8,5 +8,6 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path("accounts/", include("allauth.urls")),
     path('cms/', include(wagtailadmin_urls)),
-    path("", include(wagtail_urls))
+    path("", include("apps.war.urls")),
+    path("", include(wagtail_urls)),
 ]

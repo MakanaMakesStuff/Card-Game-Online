@@ -57,6 +57,10 @@ INSTALLED_APPS = [
     "allauth",
     "allauth.account",
     "allauth.mfa",
+    "tailwind",
+    "theme",
+    "apps.core",
+    "apps.war",
 ]
 
 # wagtail envs
@@ -79,6 +83,9 @@ WAGTAILDOCS_EXTENSIONS = [
     "mp4",
 ]
 
+# Theming
+TAILWIND_APP_NAME = "theme"
+
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
@@ -91,7 +98,7 @@ MIDDLEWARE = [
     "allauth.account.middleware.AccountMiddleware",
 ]
 
-ROOT_URLCONF = 'core.urls'
+ROOT_URLCONF = 'config.urls'
 
 TEMPLATES = [
     {
@@ -108,7 +115,7 @@ TEMPLATES = [
     },
 ]
 
-WSGI_APPLICATION = 'core.wsgi.application'
+WSGI_APPLICATION = 'config.wsgi.application'
 
 
 # Database

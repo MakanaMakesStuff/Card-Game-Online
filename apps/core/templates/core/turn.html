@@ -1,0 +1,53 @@
+{% extends 'core/layouts/base.html' %}
+
+{% block content %}
+<div class="war-board">
+    
+    <div class="player-area top-player">
+        <h2>Computer</h2>
+        <div class="card-count">Cards remaining: <strong>{{ results.p2_card_count }}</strong></div>
+        
+        <div class="card-display">
+            {% if results.winner %}
+                <div class="playing-card card-back"></div>
+            {% else %}
+                <div class="playing-card">
+                    <span class="card-value">{{ results.p2_card.display }}</span>
+                </div>
+            {% endif %}
+        </div>
+    </div>
+
+    <div class="battlefield">
+        {% if results.winner %}
+            <h2 class="game-over-text">Game Over! {{ results.winner }} wins!</h2>
+            <a href="{% url 'war:start_war_game' %}" class="btn-action">Play Again</a>
+        {% else %}
+            <div class="action-log">
+                <p>{{ results.log }}</p>
+            </div>
+            
+            <form action="{% url 'war:play_war_game' game_id=game_id %}" method="POST">
+                {% csrf_token %}
+                <button type="submit" class="btn-action">Draw Cards ⚔️</button>
+            </form>
+        {% endif %}
+    </div>
+
+    <div class="player-area bottom-player">
+        <div class="card-display">
+            {% if results.winner %}
+                <div class="playing-card card-back"></div>
+            {% else %}
+                <div class="playing-card">
+                    <span class="card-value">{{ results.p1_card.display }}</span>
+                </div>
+            {% endif %}
+        </div>
+        
+        <div class="card-count">Cards remaining: <strong>{{ results.p1_card_count }}</strong></div>
+        <h2>{{ request.user.username }}</h2>
+    </div>
+
+</div>
+{% endblock %}

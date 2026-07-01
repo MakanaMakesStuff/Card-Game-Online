@@ -7,6 +7,7 @@ dj() {
         run) shift; poetry run python manage.py runserver "$@" ;;
         super) shift; poetry run python manage.py createsuperuser "$@" ;;
         app) shift; poetry run python manage.py startapp "$@" ;;
+        tw) shift; poetry run python manage.py tailwind "$@" ;;
         *) poetry run python manage.py "$@" ;;
     esac
 }

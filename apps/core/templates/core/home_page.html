@@ -1,0 +1,25 @@
+{% extends "core/layouts/base.html" %}
+
+{% block content %}
+<h1>Welcome to Django Arcade!</h1>
+<p>Explore our collection of games and have fun!</p>
+
+<h1 class="menu-title">Select a Game</h1>
+
+<div class="game-grid">
+    <div class="game-selection-card">
+        <div class="game-icon">⚔️</div>
+        <h2>War</h2>
+        <p>The classic card game of high stakes and pure luck. Battle against the AI to win the entire deck.</p>
+        
+        <a href="{% url 'war:start_war_game' %}" class="btn-play">Start Game</a>
+    </div>
+
+    <div class="game-selection-card locked">
+        <div class="game-icon">🃏</div>
+        <h2>Blackjack</h2>
+        <p>Coming Soon...</p>
+        <button class="btn-play disabled" disabled>Locked</button>
+    </div>
+</div>
+{% endblock %}

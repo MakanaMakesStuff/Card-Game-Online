@@ -538,6 +538,27 @@ files = [
 Django = ">=4.1"
 
 [[package]]
+name = "django-tailwind"
+version = "4.5.0"
+description = "Tailwind CSS Framework for Django projects"
+optional = false
+python-versions = ">=3.11"
+groups = ["main"]
+files = [
+    {file = "django_tailwind-4.5.0-py3-none-any.whl", hash = "sha256:618314751e867e8871b1e06ed98c0b8beb762ac9b431f739647ad4d82ab8b125"},
+    {file = "django_tailwind-4.5.0.tar.gz", hash = "sha256:c4b40820663ac3932f6951b82b91e3773361a46d9bde972bc8a338eee3c5d045"},
+]
+
+[package.dependencies]
+django = ">=4.2.20"
+pytailwindcss = ">=0.3.0"
+
+[package.extras]
+cookiecutter = ["cookiecutter (>=2.6.0,<3)"]
+honcho = ["honcho (>=2.0.0,<3)"]
+reload = ["django-browser-reload (>=1.21.0,<2)"]
+
+[[package]]
 name = "django-tasks"
 version = "0.12.0"
 description = "A backport of Django's built in Tasks framework"
@@ -901,6 +922,18 @@ files = [
 ]
 
 [[package]]
+name = "pytailwindcss"
+version = "0.3.1"
+description = "Standalone Tailwind CSS CLI, installable via pip. Use Tailwind CSS without Node.js."
+optional = false
+python-versions = ">=3.11"
+groups = ["main"]
+files = [
+    {file = "pytailwindcss-0.3.1-py3-none-any.whl", hash = "sha256:31583c5bb7fac66c6e6535992e51630e36788cf6e569f4d294e98962fa034535"},
+    {file = "pytailwindcss-0.3.1.tar.gz", hash = "sha256:e83c65985f078ff91500f74bca595f615e54059d5afc90b233382e118b509b4d"},
+]
+
+[[package]]
 name = "qrcode"
 version = "8.2"
 description = "QR Code image generator"
@@ -1091,4 +1124,4 @@ wand = ["Wand (>=0.6,<1.0)"]
 [metadata]
 lock-version = "2.1"
 python-versions = ">=3.12,<4"
-content-hash = "3ccb0d20b75d81c0b828483b488cc398b3e4c4f16a666b854a860e9fb7a1c951"
+content-hash = "fcccae2e3076dde83d287881eb41c333ac5433b99a19c27be1ab26cf8ee5cda2"
