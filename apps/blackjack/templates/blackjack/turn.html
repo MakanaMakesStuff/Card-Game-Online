@@ -1,0 +1,6 @@
+{% extends "core/layouts/base.html" %}
+{% block content %}
+<div id="game-board" class="bg-slate-300 text-white rounded-3xl shadow-2xl p-8 min-h-[75vh] flex flex-col items-center justify-between border-4 border-emerald-900">
+  {% include 'blackjack/partials/board.html' %}
+</div>
+{% endblock %}
